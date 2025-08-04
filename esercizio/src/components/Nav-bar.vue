@@ -30,7 +30,12 @@
                 </v-btn>
             </v-col>
             <v-col>
-                <v-btn size="small" prepend-icon="mdi-logout" stacked color="error" @click="main.logout()">
+                <v-btn size="small" prepend-icon="mdi-account" append color="info" to="/Account">
+                    <p class="text">Account</p>
+                </v-btn>
+            </v-col>
+            <v-col>
+                <v-btn size="small" prepend-icon="mdi-logout" append color="error" @click="main.logout()">
                     <p class="text">Logout</p>
                 </v-btn>
             </v-col>

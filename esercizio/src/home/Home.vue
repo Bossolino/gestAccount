@@ -1,4 +1,11 @@
 <template>
+<v-container>
+    <v-col style="text-align: end">
+        <v-btn prepend-icon="mdi-logout" size="small" append color="error" @click="main.logout()">
+            <p class="text">Logout</p>
+        </v-btn>
+    </v-col>
+</v-container>
 <v-container class="fill-height" max-width="900">
     <v-row>
         <v-col>
@@ -13,10 +20,11 @@
             </v-btn>
         </v-col>
         <v-col>
-            <v-btn prepend-icon="mdi-logout" stacked color="error" @click="main.logout()">
-                <p class="text">Logout</p>
+            <v-btn prepend-icon="mdi-account" stacked color="info" to="/Account">
+                <p class="text">Account</p>
             </v-btn>
         </v-col>
+        
     </v-row>
 </v-container>
 </template>

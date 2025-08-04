@@ -35,8 +35,13 @@
             errText.value = response.data.error;
             return;
         }
-        main.ID = response.data.ID;
-        main.nome = response.data.NOME;
+        console.log(response.data)
+        
+        main.id = response.data.ID;
+        main.nome = response;
+        main.eta = response.data.ETA;
+        main.email = response.data.EMAIL;
+        main.password = response.data.PASSWORD;
         localStorage.setItem("accesso", response.data.token);
         main.login();
       }).catch(error => {
@@ -48,7 +53,7 @@
 
 </script>
 <template>
-  <v-sheet class="mx-auto" width="300">
+  <v-sheet style="margin-top: 10vh;" class="mx-auto" width="300">
     <v-form @submit.prevent>
       <v-text-field v-model="emailIns" label="Email"></v-text-field>
       <div>

@@ -3,12 +3,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import { createApp, ref } from 'vue'
 import 'unfonts.css'
+import axios from 'axios'
 import Login from '@/login/Login.vue'
 import Home from "@/home/Home.vue"
 import View from '@/view/View.vue'
 import Update from '@/update/Update.vue'
 import Create from '@/create/Create.vue'
-import axios from 'axios'
+import Account from '@/account/account.vue'
 
 
 const router  = createRouter({
@@ -18,11 +19,12 @@ const router  = createRouter({
             {path: '/', name: "Home", component: Home},
             {path: '/View', name: "View", component: View},
             {path: '/Update', name: "Update", component: Update},
-            {path: '/Create', name: "Create", component: Create}
+            {path: '/Create', name: "Create", component: Create},
+            {path: '/Account', name: "Account", component: Account}
         ]
 })
 
-let rotte = ["/Login","/","/View","/Update","/Create"];
+let rotte = ["/Login","/","/View","/Update","/Create","/Account"];
 
 const accesso = ref(false);
 const admin = ref(false);
@@ -65,6 +67,8 @@ router.beforeEach((to, from, next) => {
 export default {
     id: 0,
     nome: "",
+    eta: 0,
+    email: "",
     admin,
     accesso,
     router,
@@ -76,6 +80,7 @@ export default {
             token.value = document.cookie;
             if (token.value.length === 10 && token.value.includes("9") && token.value.includes("r")){
                 admin.value = true;
+                console.log(this)
             } else {
                 router.removeRoute("Create");
                 router.removeRoute("Update");
@@ -83,6 +88,7 @@ export default {
             }
         }
         router.replace("/");
+        location.reload();
     },
     logout: function(){
         axios({
@@ -95,7 +101,6 @@ export default {
         router.addRoute({path: '/Login', name: "Login", component: Login});
         rotte.push("/Login");
         router.replace("/Login");
-        location.reload();
     }
 }
 const app = createApp(App)
